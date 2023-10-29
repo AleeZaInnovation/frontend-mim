@@ -34,6 +34,13 @@ const accountWiseTra = async (info) => {
   return response.data;
 };
 
+const incomeState = async (info) => {
+  const response = await axios.post(`${server}/income-statement`, info, '', {
+    withCredentials: true
+  });
+  return response.data;
+};
+
 
 
 const partyService = {
@@ -42,6 +49,7 @@ const partyService = {
   getPartyTra,
   typeWiseTra,
   accountWiseTra,
+  incomeState,
 };
 
 export default partyService;

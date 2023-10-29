@@ -19,24 +19,6 @@ const Sidebar = () => {
         active={location.pathname === '/admin/dashboard'}
       />
       <LinkButton
-        Icon={RiAddCircleFill}
-        text="Create Transaction"
-        url={'create-transaction'}
-        active={location.pathname === '/admin/create-transaction'}
-      />
-      <LinkButton
-        Icon={RiAddCircleFill}
-        text="Create Party"
-        url={'create-party'}
-        active={location.pathname === '/admin/create-party'}
-      />
-      <LinkButton
-        Icon={RiEyeFill}
-        text="Parties"
-        url={'parties'}
-        active={location.pathname === '/admin/parties'}
-      />
-      <LinkButton
         Icon={RiUser3Fill}
         text="Users"
         url={'users'}

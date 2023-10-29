@@ -3,6 +3,7 @@ import {
   Container,
   Grid,
   Heading,
+  Input,
   Select,
   VStack,
   useDisclosure,
@@ -16,7 +17,8 @@ import AccountTraModal from './AccountTraDetails';
 import { traAccount } from '../../../redux/actions/partySlice';
 
 const AccountWiseTra = () => {
-  const transaction = useSelector(state => state?.party?.accountTra?.transactions);
+  const transaction = useSelector(state => state?.party?.accountTra?.party);
+  const party = useSelector(state => state?.party?.accountTra?.transactions);
   const { error, message, loading } = useSelector(state => state.admin);
   const accountTypes = [
     'Account Payable',
@@ -29,13 +31,17 @@ const AccountWiseTra = () => {
     'Loan Given',
   ];
   const [accountType, setAccountType] = useState('');
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
   const dispatch = useDispatch();
   const { isOpen, onClose, onOpen } = useDisclosure();
 
-  const typeTraDetails = accountType => {
+  const typeTraDetails = (accountType, startDate, endDate) => {
     dispatch(
       traAccount({
         type: accountType,
+        startDate: startDate,
+        endDate: endDate,
       })
     );
     onOpen();
@@ -69,6 +75,22 @@ const AccountWiseTra = () => {
           />
 
           <VStack m="auto" spacing={'8'}>
+            <p>From</p>
+            <Input
+              value={startDate}
+              onChange={e => setStartDate(e.target.value)}
+              placeholder="From Date"
+              type={'date'}
+              focusBorderColor="purple.300"
+            />
+            <p>To</p>
+            <Input
+              value={endDate}
+              onChange={e => setEndDate(e.target.value)}
+              placeholder="From Date"
+              type={'date'}
+              focusBorderColor="purple.300"
+            />
             <Select
               focusBorderColor="purple.300"
               value={accountType}
@@ -87,7 +109,7 @@ const AccountWiseTra = () => {
               isLoading={loading}
               w="full"
               colorScheme={'purple'}
-              onClick={() => typeTraDetails(accountType)}
+              onClick={() => typeTraDetails(accountType,startDate,endDate)}
             >
               Search
             </Button>
@@ -99,6 +121,7 @@ const AccountWiseTra = () => {
           loading={loading}
           type={accountType}
           transaction={transaction}
+          party={party}
         />
       </Container>
 

@@ -56,6 +56,17 @@ export const traAccount = createAsyncThunk(
     }
   }
 );
+
+export const incomeStatement = createAsyncThunk(
+  "party/income-statement",
+  async (info, thunkAPI) => {
+    try {
+      return await partyService.incomeState(info);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
 const initialState = {
   parties: '',
   isError: false,
@@ -143,7 +154,23 @@ export const partySlice = createSlice({
         state.isError = true;
         state.isSuccess = false;
         state.message = action.payload;
+      })
+      .addCase(incomeStatement.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(incomeStatement.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isError = false;
+        state.isSuccess = true;
+        state.profitLoss = action.payload;;
+      })
+      .addCase(incomeStatement.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.isSuccess = false;
+        state.message = action.payload;
       });
+      
   },
 });
 export default partySlice.reducer;

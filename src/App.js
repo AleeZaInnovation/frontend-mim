@@ -29,6 +29,7 @@ import CreateTransaction from './components/Admin/CreateTransaction/CreateTransa
 import PartyTransaction from './components/Admin/PartyTransaction/PartyTransaction';
 import TypeWiseTra from './components/Admin/Report/TypeWiseTra';
 import AccountWiseTra from './components/Admin/Report/AccountWiseTra';
+import IncomeStatement from './components/Admin/Report/IncomeStatement';
 function App() {
   // window.addEventListener('contextmenu', e=>{
   //   e.preventDefault();
@@ -110,6 +111,9 @@ function App() {
               </ProtectedRoute>} />
               <Route path="/admin/account-wise-transaction" element={<ProtectedRoute isAuthenticated={isAuthenticated} adminRoute={true} isAdmin={user && user.role === 'admin'}>
                 <AccountWiseTra />
+              </ProtectedRoute>} />
+              <Route path="/admin/income-statement" element={<ProtectedRoute isAuthenticated={isAuthenticated} adminRoute={true} isAdmin={user && user.role === 'admin'}>
+                <IncomeStatement />
               </ProtectedRoute>} />
               <Route path="/admin/users" element={<ProtectedRoute isAuthenticated={isAuthenticated} adminRoute={true} isAdmin={user && user.role === 'admin'}>
                 <Users />

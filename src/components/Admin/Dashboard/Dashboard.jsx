@@ -108,19 +108,19 @@ const Dashboard = () => {
             justifyContent={'space-evenly'}
           >
             <Databox
-              title="Views"
+              title="Quantity"
               qty={viewsCount}
               qtyPercentage={viewsPercentage}
               profit={viewsProfit}
             />
             <Databox
-              title="Users"
+              title="Income"
               qty={usersCount}
               qtyPercentage={usersPercentage}
               profit={usersProfit}
             />
             <Databox
-              title="Subscription"
+              title="Expense"
               qty={subscriptionCount}
               qtyPercentage={subscriptionPercentage}
               profit={subscriptionProfit}
@@ -137,7 +137,7 @@ const Dashboard = () => {
             <Heading
               textAlign={['center', 'left']}
               size="md"
-              children="Views Graph"
+              children="Quantity Graph"
               pt={['8', '0']}
               ml={['0', '16']}
             />
@@ -158,24 +158,24 @@ const Dashboard = () => {
               <Box>
                 <Bar
                   profit={viewsProfit}
-                  title="Views"
+                  title="Quantity"
                   value={viewsPercentage}
                 />
                 <Bar
                   profit={usersProfit}
-                  title="Users"
+                  title="Income"
                   value={usersPercentage}
                 />
                 <Bar
                   profit={subscriptionProfit}
-                  title="Subscription"
+                  title="Expense"
                   value={subscriptionPercentage}
                 />
               </Box>
             </Box>
 
             <Box p={['0', '16']} boxSizing="border-box" py="4">
-              <Heading textAlign={'center'} size="md" mb="4" children="Users" />
+              <Heading textAlign={'center'} size="md" mb="4" children="Profit" />
 
               <DoughnutChart
                 users={[subscriptionCount, usersCount - subscriptionCount]}
@@ -184,8 +184,8 @@ const Dashboard = () => {
           </Grid>
         </Box>
       )}
-{/* 
-      <Sidebar /> */}
+
+      <Sidebar />
     </Grid>
   );
 };

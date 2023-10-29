@@ -43,7 +43,7 @@ export const LineChart = ({ views = [] }) => {
     labels,
     datasets: [
       {
-        label: 'Views',
+        label: 'Quantity',
         data: views,
         borderColor: 'rgba(107,70,193,0.5)',
         backgroundColor: '#6b46c1',
@@ -56,10 +56,10 @@ export const LineChart = ({ views = [] }) => {
 
 export const DoughnutChart = ({ users = [] }) => {
   const data = {
-    labels: ['Subscribed', 'Not Subscribed'],
+    labels: ['Expense', 'Income'],
     datasets: [
       {
-        label: 'Views',
+        label: 'Income',
         data: users,
         borderColor: ['rgb(62,12,171)', 'rgb(214,43,129)'],
         backgroundColor: ['rgba(62,12,171,0.3)', 'rgba(214,43,129,0.3)'],

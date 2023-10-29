@@ -89,6 +89,11 @@ const Header = ({ isAuthenticated = false, user }) => {
                 url="/admin/account-wise-transaction"
                 title="Account Wise Report"
               />
+              <LinkButton
+                onClose={onClose}
+                url="/admin/income-statement"
+                title="Income Statement"
+              />
               <LinkButton onClose={onClose} url="/contact" title="Contact Us" />
               <LinkButton onClose={onClose} url="/about" title="About" />
             </VStack>

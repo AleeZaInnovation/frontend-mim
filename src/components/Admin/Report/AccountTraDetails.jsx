@@ -28,6 +28,7 @@ const AccountTraModal = ({
   onClose,
   type,
   transaction,
+  party,
   startDate,
   endDate,
   loading,
@@ -72,7 +73,6 @@ const AccountTraModal = ({
                 <Heading children={type} />
                 <Heading
                   children={`#${type}s Wise Report`}
-                  
                   size={'sm'}
                   opacity={0.4}
                 />
@@ -100,7 +100,7 @@ const AccountTraModal = ({
                         <Th></Th>
                         <Th></Th>
                         <Th></Th>
-                        <Th isNumeric>{(amount)}</Th>
+                        <Th isNumeric>{amount}</Th>
                       </Tr>
                     </Thead>
                     All {type}s Transaction
@@ -112,8 +112,9 @@ const AccountTraModal = ({
                       <Th>Poster</Th>
                       <Th>Account Name</Th>
                       <Th>Mobile</Th>
-                      <Th>Created By</Th>
                       <Th isNumeric>Rate</Th>
+                      <Th isNumeric>Delivery Date</Th>
+                      <Th isNumeric>Quantity</Th>
                       <Th isNumeric>Amount</Th>
                     </Tr>
                   </Thead>
@@ -127,6 +128,7 @@ const AccountTraModal = ({
                           loading={loading}
                           credit={item?.credit}
                           debit={item?.debit}
+                          party={party}
                         />
                       ))}
                   </Tbody>
@@ -147,17 +149,42 @@ const AccountTraModal = ({
 
 export default AccountTraModal;
 
-function Row({ item, credit, debit }) {
+function Row({ item, party, credit, debit }) {
   return (
     <Tr>
       <Td>{new Date(item?.createdAt).toDateString()}</Td>
       <Td>
-        <Image maxH={'10vh'} maxW={'10vh'}  src={item.avatar.url} />
+        <Image maxH={'10vh'} maxW={'10vh'} src={item.avatar.url} />
       </Td>
       <Td>{item?.name}</Td>
       <Td>{item?.mobile}</Td>
-      <Td >{item?.createdBy}</Td>
       <Td isNumeric>{item?.rate}</Td>
+      <Td isNumeric>
+        {' '}
+        {party &&
+          party?.map(p =>
+            p?.debit === item?._id ? (
+              <Tr>
+                <Tr>{new Date(p?.createdAt).toDateString()}</Tr>
+              </Tr>
+            ) : (
+              ''
+            )
+          )}
+      </Td>
+      <Td isNumeric>
+        {' '}
+        {party &&
+          party?.map(p =>
+            p?.debit === item?._id ? (
+              <Tr>
+                <Tr>{p?.quantity}</Tr>
+              </Tr>
+            ) : (
+              ''
+            )
+          )}
+      </Td>
       <Td isNumeric>{item?.balance}</Td>
     </Tr>
   );
