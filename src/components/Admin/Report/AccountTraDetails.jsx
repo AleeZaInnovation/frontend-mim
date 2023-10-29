@@ -122,7 +122,7 @@ const AccountTraModal = ({
                   <Tbody>
                     {transaction &&
                       transaction.map(item =>
-                        (item?.balance > 0)(
+                        (
                           <Row
                             key={item._id}
                             item={item}
