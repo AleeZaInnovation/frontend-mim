@@ -121,8 +121,8 @@ const AccountTraModal = ({
 
                   <Tbody>
                     {transaction &&
-                      transaction.map(item => {
-                        if (item?.balance > 0) {
+                      transaction.map(item =>
+                        (item?.balance > 0)(
                           <Row
                             key={item._id}
                             item={item}
@@ -130,9 +130,9 @@ const AccountTraModal = ({
                             credit={item?.credit}
                             debit={item?.debit}
                             party={party}
-                          />;
-                        }
-                      })}
+                          />
+                        )
+                      )}
                   </Tbody>
                 </Table>
               </TableContainer>
