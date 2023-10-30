@@ -2,6 +2,7 @@ import {
   Button,
   Container,
   FormLabel,
+  Text,
   Grid,
   Heading,
   Image,
@@ -35,6 +36,7 @@ const CreateTransaction = () => {
   const [image, setImage] = useState('');
   const [imagePrev, setImagePrev] = useState('');
   let item = partyData?.find(item => item._id === debit);
+  let creditItem = partyData?.find(item => item._id === credit);
 
   const dispatch = useDispatch();
   const finalRate = Number(rate ? rate : item?.rate);
@@ -141,9 +143,9 @@ const CreateTransaction = () => {
                 </option>
               ))}
             </Select>
-            <div className={item?.name ? 'd-flex' : 'd-none'}>
+            <Text display={item?.name ? 'show' : 'none'}>
               {item?.name} Previous Balance is tk {item?.balance}
-            </div>
+            </Text>
             <Select
               focusBorderColor="purple.300"
               value={credit}
@@ -157,6 +159,9 @@ const CreateTransaction = () => {
                 </option>
               ))}
             </Select>
+            <Text display={creditItem?.name ? 'show' : 'none'}>
+              {creditItem?.name} Previous Balance is tk {creditItem?.balance}
+            </Text>
             <Input
               value={rate}
               onChange={e => setRate(e.target.value)}
