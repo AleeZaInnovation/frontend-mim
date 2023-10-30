@@ -38,7 +38,7 @@ const CreateTransaction = () => {
 
   const dispatch = useDispatch();
   const finalRate = Number(rate ? rate : item?.rate);
-  const balance = newBalance ? newBalance : quantity * finalRate;
+  const balance = Number(newBalance ? newBalance : quantity * finalRate);
   const transactionTypes = ['Sale', 'Sale Return', 'Receive', 'Payment'];
 
   const changeImageHandler = e => {
