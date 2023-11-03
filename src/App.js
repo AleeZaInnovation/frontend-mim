@@ -6,12 +6,6 @@ import Login from './components/Auth/Login';
 import Register from './components/Auth/Register';
 import ForgetPassword from './components/Auth/ForgetPassword';
 import { ResetPassword } from './components/Auth/ResetPassword';
-import { Contact } from './components/Contact/Contact';
-import Request from './components/Request/Request';
-import About from './components/About/About';
-import Subscribe from './components/Payments/Subscribe';
-import PaymentFail from './components/Payments/PaymentFail';
-import PaymentSuccess from './components/Payments/PaymentSuccess';
 import NotFound from './components/Layout/NotFound/NotFound';
 import Profile from './components/Profile/Profile';
 import ChangePassword from './components/Profile/ChangePassword';
@@ -57,9 +51,6 @@ function App() {
           <>
             <Header isAuthenticated={isAuthenticated} user={user} />
             <Routes>
-              <Route path='/contact' element={<Contact />} />
-              <Route path='/request' element={<Request />} />
-              <Route path='/about' element={<About />} />
               <Route path='/profile' element={<ProtectedRoute isAuthenticated={isAuthenticated} adminRoute={true} isAdmin={user && user.role === 'admin'}>
                 <Profile user={user} />
               </ProtectedRoute>} />
@@ -84,12 +75,6 @@ function App() {
               <Route path='/resetpassword/:token' element={<ProtectedRoute isAuthenticated={!isAuthenticated} redirect="/admin/dashboard">
                 <ResetPassword />
               </ProtectedRoute>} />
-              <Route path="/subscribe" element={<ProtectedRoute isAuthenticated={isAuthenticated}>
-                <Subscribe user={user} />
-              </ProtectedRoute>} />
-              <Route path="*" element={<NotFound />} />
-              <Route path="/paymentsuccess" element={<PaymentSuccess />} />
-              <Route path="/paymentfail" element={<PaymentFail />} />
               {/* {--Admin Routes--} */}
               <Route path="/admin/dashboard" element={<ProtectedRoute isAuthenticated={isAuthenticated} adminRoute={true} isAdmin={user && user.role === 'admin'}>
                 <Dashboard />
