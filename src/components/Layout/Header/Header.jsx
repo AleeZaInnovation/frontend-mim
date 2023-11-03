@@ -94,8 +94,6 @@ const Header = ({ isAuthenticated = false, user }) => {
                 url="/admin/income-statement"
                 title="Income Statement"
               />
-              <LinkButton onClose={onClose} url="/contact" title="Contact Us" />
-              <LinkButton onClose={onClose} url="/about" title="About" />
             </VStack>
             <HStack
               justifyContent={'space-evenly'}
